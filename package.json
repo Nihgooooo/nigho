@@ -2,9 +2,6 @@
   "name": "niggabot",
   "version": "0.0.1",
   "description": "fuckpusy",
-  "engines": {
-    "node": "8.x"
-  }
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,4 +11,7 @@
   "dependencies": {
     "discord.js": "^11.2.1"
   }
+  "engines": {
+  "node": "8.x"
+}
 }
