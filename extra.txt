@@ -1,0 +1,1 @@
+if (noswear.some(word => message.content.toLowerCase().includes(word))) {

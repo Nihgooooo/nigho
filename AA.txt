@@ -1,0 +1,25 @@
+// mute
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+   }
+     fs.unlink(`./sset/muted/${message.guild.id}/${nigg.username}/`+ `${nigg.username}` + '.txt', function (err) {
+					if(err) return undefined
+					});
+				setTimeout(function() {
+                    fs.rmdir(`./sset/muted/${message.guild.id}/${nigg.username}`, function (err) {
+					if(err) return console.log(err.stack)
+					},1000)
+					});
+// unmute
+let nigg = message.mentions.users.first()
+        var cmds = `./sset/muted/${message.guild.id}`
+        if (!fs.existsSync(cmds)) {
+    fs.mkdirSync(cmds);
+   }
+     var cmds = `./sset/muted/${message.guild.id}/${nigg.username}`
+		if (!fs.existsSync(cmds)) {
+    fs.mkdirSync(cmds);
+   }
+    fs.writeFile(`./sset/muted/${message.guild.id}/${nigg.username}/` +  `${nigg.username}` + ".txt", `${nigg.id}`, function (err) {
+    	if(err) console.log(err.stack)
+   });
