@@ -12,7 +12,7 @@
     "discord.js": "^11.2.1"
   },
   
-  "engines" {
+  "engines": {
   "node": "8.0.0"
 }
 }
