@@ -1,0 +1,2 @@
+Update 05.11.2017 
+Bot is hosted off heroku for a while, till i get everything fixed up, keep in mind that custom commands, auto role, welcome messages will be deleted if the bot goes offline.
