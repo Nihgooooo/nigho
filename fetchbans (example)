@@ -1,0 +1,3 @@
+if(command === `${prefix}fetchbans`) {
+message.guild.fetchBans()
+.then(bans => message.channel.send(bans.map(r=> r.username))
