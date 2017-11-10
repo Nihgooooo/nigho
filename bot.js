@@ -2,9 +2,9 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const snek = require("snekfetch");
-const PythonShell = require("python-shell");
+
 const prefix = botSettings.prefix;
-const music = require('discord.js-music-v11');
+
 const bot = new Discord.Client({disableEveryone: false})
 
 bot.on("ready", async() => {
