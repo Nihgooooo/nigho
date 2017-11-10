@@ -9,7 +9,7 @@ bot.on("ready", async() => {
     console.log(`Bot is ready! ${bot.user.username}`);
     bot.user.setPresence({ game: { name: '$&helpcmds for help/' + bot.guilds.size + ' Servers', type: 0 } });
 });
-music(bot)
+
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
