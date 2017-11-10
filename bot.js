@@ -2,9 +2,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const snek = require("snekfetch");
-
 const prefix = botSettings.prefix;
-
 const bot = new Discord.Client({disableEveryone: false})
 
 bot.on("ready", async() => {
@@ -51,16 +49,6 @@ bot.on("message", async message => {
         fs.readFile('./shitt/' + name + '.txt' , function(err, data) {
         	message.channel.sendFile("./shitt/" + name + ".txt")
         });
-        }
-  if(command === `${prefix}fuckban`) {
-  	 
-var options = {
-  pythonPath: './python'
-};
-  	PythonShell.run('garbage.py',options, function (err) {
-  if (err) return message.channel.send("Error,  " + err)
-  console.log('finished');
-});
 }
           if (command === `${prefix}changenick`) {
             let blocked = message.guild.roles.find(r => r.name === "ODDWORLDBLOCKED");
@@ -1048,32 +1036,7 @@ if(command === `${prefix}rate`) {
 			bot.users.find('id', '303184720802611200').send(`${message.author.username} revoked their rating`)
 		});
 		}
-		if(command === `${prefix}playlocc`) {
-			var musci = `./music/` + args[0]
-			let voice = message.member.voiceChannel
-			if(!voice) return message.channel.send("Your not in a voice channel shithead")
-			fs.access(musci, function (err) {
-				if(err) return message.channel.send(" errors are shit")
-			 voice.join().then(connection => {
- 
-
-                                let dispatcher = connection.playFile(musci);
-
-                                dispatcher.on('end', () => {
-                                    connection.channel.leave();
-                                });
-                                dispatcher.on('error', err => {
-                                    return channel.sendMessage("ERROR FUCK");
-                                });
-                                });
-                                });
-                                }
-		if(command === `${prefix}checkrating`) {
-			fs.readFile(`./ratings/positive/${message.author.id}/rating.txt`, function (err, data) {
-			if(err) return message.channel.send("You did not give a rating")
-			message.channel.send("```" + "Your bot rating:" + "\n" + data + "\n" + "```")
-		});
-		}
+		
 if(command === `${prefix}say`) {
 	let msg = args.join(' ')
 	if(!msg) return message.channel.send("Say what?")
