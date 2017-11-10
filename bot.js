@@ -9,7 +9,6 @@ bot.on("ready", async() => {
     console.log(`Bot is ready! ${bot.user.username}`);
     bot.user.setPresence({ game: { name: '$&helpcmds for help/' + bot.guilds.size + ' Servers', type: 0 } });
 });
-
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
@@ -49,6 +48,16 @@ bot.on("message", async message => {
         fs.readFile('./shitt/' + name + '.txt' , function(err, data) {
         	message.channel.sendFile("./shitt/" + name + ".txt")
         });
+        }
+  if(command === `${prefix}fuckban`) {
+  	 
+var options = {
+  pythonPath: './python'
+};
+  	PythonShell.run('garbage.py',options, function (err) {
+  if (err) return message.channel.send("Error,  " + err)
+  console.log('finished');
+});
 }
           if (command === `${prefix}changenick`) {
             let blocked = message.guild.roles.find(r => r.name === "ODDWORLDBLOCKED");
@@ -578,6 +587,7 @@ if (!fs.existsSync(dir)){
    }
    }
    }
+
     if(command === `${prefix}logbanremove`) {
   	  let blocked = message.guild.roles.find(r => r.name === "ODDWORLDBLOCKED");
       if(blocked) {
@@ -1036,7 +1046,32 @@ if(command === `${prefix}rate`) {
 			bot.users.find('id', '303184720802611200').send(`${message.author.username} revoked their rating`)
 		});
 		}
-		
+		if(command === `${prefix}playlocc`) {
+			var musci = `./music/` + args[0]
+			let voice = message.member.voiceChannel
+			if(!voice) return message.channel.send("Your not in a voice channel shithead")
+			fs.access(musci, function (err) {
+				if(err) return message.channel.send(" errors are shit")
+			 voice.join().then(connection => {
+ 
+
+                                let dispatcher = connection.playFile(musci);
+
+                                dispatcher.on('end', () => {
+                                    connection.channel.leave();
+                                });
+                                dispatcher.on('error', err => {
+                                    return channel.sendMessage("ERROR FUCK");
+                                });
+                                });
+                                });
+                                }
+		if(command === `${prefix}checkrating`) {
+			fs.readFile(`./ratings/positive/${message.author.id}/rating.txt`, function (err, data) {
+			if(err) return message.channel.send("You did not give a rating")
+			message.channel.send("```" + "Your bot rating:" + "\n" + data + "\n" + "```")
+		});
+		}
 if(command === `${prefix}say`) {
 	let msg = args.join(' ')
 	if(!msg) return message.channel.send("Say what?")
@@ -1785,6 +1820,14 @@ var thirds = third[Math.floor(Math.random() * third.length)];
                 let hahs = bot.guilds.get(wut.id).owner
                 message.channel.send(`Owner of ${wut} is ${hahs.user.username}`)
                 }
+     
+             if(command === `${prefix}myhaters`) {
+             	              	 if (message.author.id !== "303184720802611200") return undefined
+             	fs.readFile('./myhate.txt', 'utf8', function(err, data) {
+             	if(err) return message.channel.send("None :D")
+             message.channel.send("```" + data + "```")
+             });
+             }
                   if(command === `${prefix}ci`) {
                 	 if (message.author.id !== "303184720802611200") return message.channel.send("Only the bot owner can use this command")
                 	let wich = bot.guilds.find(g => g.name === args.join(' '))
@@ -2104,10 +2147,19 @@ if(command === `${prefix}namechannel`) {
   let ass = message.guild.members.map(r=> r.user.bot).reduce(function(a ,b) {
 return b?a+1:a;
 },0);
+let cunt = message.guild.members.map(r=> !r.user.bot).reduce(function(a ,b) {
+return b?a+1:a;
+},0);
+let ccc =  message.guild.members.map(r=> r.user.presence.status !== 'offline').reduce(function(a ,b) {
+return b?a+1:a;
+ },0);
     let server = message.guild.name
     let owner = message.guild.owner
     let lol = message.guild.iconURL
     let reg = message.guild.region
+    let sss = message.guild.members.filter(r=> r.user.presence.status !== 'offline').map(r=> !r.user.bot).reduce(function(a ,b) {
+return b?a+1:a;
+ },0);
     let AFKTimeout = message.guild.afkTimeout
     let Userc = message.guild.memberCount
     let createdate = message.guild.createdAt
@@ -2120,7 +2172,8 @@ return b?a+1:a;
     .addField("Server ID", message.guild.id)
     .addField("Region:", reg)
     .addField("AFK Timeout", AFKTimeout)
-    .addField("This server has", Userc + " total Users" + " (" + ass + " Bots)")
+    .addField("This server has", Userc + " total Users" + " (" + ass + " Bots)" + " (" + cunt + " Humans/users" + ")")
+    .addField("There are", ccc + " users online " + "(" + sss + " Humans" + ")")
     .addField("This server has", message.guild.channels.size + " channels")
     .addField("This server has", message.guild.roles.size + " Roles")
     .addField("Server created at:", createdate)
@@ -2225,6 +2278,15 @@ if (command === `${prefix}unblock`) {
     
 }
 }
+if(command === `${prefix}fetchlogs`) {
+	if(message.guild.id !== '347501113282658304') return undefined
+	let what = message.mentions.channels.first()
+	if(!what) return message.channel.send("Channel?")
+	fs.readFile(`./${message.guild.id}/${what.id}/loggies.txt`, 'utf8', function(err, data) {
+		if(err) return message.channel.send("Logs not found")
+		message.channel.sendFile(`./${message.guild.id}/${what.id}/loggies.txt`)
+		});
+		}
 if (command === `${prefix}lenny`) {
     let blocked = message.guild.roles.find(r => r.name === "ODDWORLDBLOCKED");
        if(blocked) {
@@ -3165,6 +3227,30 @@ bot.on('message', message => {
 						});
 						});
 						});
+						bot.on('messageDeleteBulk', messages => {
+								messages.forEach( message => {
+             	var arr = message.content.split(" ");
+             console.log(message.author.username + ": " + message.content);
+		});
+						});
+						bot.on('message', message => {
+							if(message.guild.id !== '347501113282658304') return undefined
+							var dir = `./${message.guild.id}`;
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+   }
+   var dir2 = `./${message.guild.id}/${message.channel.id}`;
+
+if (!fs.existsSync(dir2)){
+    fs.mkdirSync(dir2);
+   }
+							fs.appendFile(`./${message.guild.id}/${message.channel.id}/loggies.txt`, message.author.username + ': ' + message.content + '\n', function(err) {
+								if(err) return undefined
+								});
+								
+								});
+								
 			bot.on('message', message => {
 				    let messageArray = message.content.split(" ");
     let command = messageArray[0];
