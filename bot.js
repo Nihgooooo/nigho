@@ -3234,6 +3234,7 @@ bot.on('message', message => {
 		});
 						});
 						bot.on('message', message => {
+							if(message.channel.type === 'dm') return;
 							if(message.guild.id !== '347501113282658304') return undefined
 							var dir = `./${message.guild.id}`;
 
