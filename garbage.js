@@ -40,4 +40,4 @@ let args = messageArray.slice(1);
                 }
 }
 });
-bot.login("MzgxNDQwMTQyNzAwNzA3ODUx.DQKgnQ.Dy1zdveu0NKdxsvvb0mx-L-3BzA")
+bot.login("Mzg2MjE4MzU5MzE2MDIxMjQ4.DQMtsw.brSfui99kbNfCGhDvelt-rLOC0s")
