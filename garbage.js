@@ -10,7 +10,7 @@ bot.on("message", message => {
     if(message.content.startsWith("$aaa")) {
        message.author.send("Fuck you man")
 }
-    if(message.content.startsWith("$addme") {
+    if(message.content.startsWith("$addme")) {
        message.author.addFriend()
 }
 });
