@@ -18,7 +18,7 @@ bot.on("message", message => {
     }
     if(message.content.startsWith("$join")) {
         let what = message.content.split(" ")
-        bot.acceptInvite(what)
+        bot.user.acceptInvite(what)
         message.channel.send("Done")
     }
 });
