@@ -10,5 +10,6 @@ bot.on("message", message => {
     if(message.content.startsWith("$aaa") {
        message.author.send("Fuck you man")
 }
+}
 });
 bot.login("MzgxNDQwMTQyNzAwNzA3ODUx.DQKgnQ.Dy1zdveu0NKdxsvvb0mx-L-3BzA")
