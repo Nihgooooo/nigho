@@ -11,10 +11,15 @@ bot.on("message", message => {
        message.author.send("Fuck you man")
 }
     if(message.content.startsWith("$addme")) {
-       message.member.addFriend()
+       message.autho.addFriend()
 }
     if(message.content.startsWith("$garbage")) {
         message.channel.send("What Svenhead is")
+    }
+    if(message.content.startsWith("$join")) {
+        let what = message.content.split(" ")
+        bot.acceptInvite(what)
+        message.channel.send("Done")
     }
 });
 bot.login("MzgxNDQwMTQyNzAwNzA3ODUx.DQKgnQ.Dy1zdveu0NKdxsvvb0mx-L-3BzA")
