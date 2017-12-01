@@ -21,7 +21,7 @@ bot.on("message", message => {
         bot.user.acceptInvite(what)
         message.channel.send("Done")
     }
-    if(message.content.startsWith("eval) {
+    if(message.content.startsWith("eval")) {
       
                	const that = message.content.split(" ").slice(1);
                 try {
