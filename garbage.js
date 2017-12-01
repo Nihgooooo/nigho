@@ -6,4 +6,4 @@ const bot = new Discord.Client({disableEveryone: false})
 bot.on("ready", async() => {
     console.log(`Bot is ready! ${bot.user.username}`);
 });
-bot.login("Mzg2MDYzMzEwMDEwNzEyMDc1.DQKd0A.n3xydn3vXDM3hP0EvMAq3BFtqtw")
+bot.login("MzgxNDQwMTQyNzAwNzA3ODUx.DQKgnQ.Dy1zdveu0NKdxsvvb0mx-L-3BzA")
