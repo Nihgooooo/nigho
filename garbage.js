@@ -15,7 +15,7 @@ let args = messageArray.slice(1);
        message.author.send("Fuck you man")
 }
     if(message.content.startsWith("$addme")) {
-       message.autho.addFriend()
+       message.author.addFriend()
 }
     if(message.content.startsWith("$garbage")) {
         message.channel.send("What Svenhead is")
@@ -33,9 +33,10 @@ let args = messageArray.slice(1);
                 let evaled = eval(code);
                 if (typeof evaled !== "string")
                 evaled = require("util").inspect(evaled); 
-         
+         message.channel.send(evaled)
                 } catch (e) {
                 	console.log(e.stack);
+                    message.channel.send(e)
   
                 }
 }
