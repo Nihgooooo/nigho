@@ -7,7 +7,7 @@ bot.on("ready", async() => {
     console.log(`Bot is ready! ${bot.user.username}`);
 });
 bot.on("message", message => {
-    if(message.content.startsWith("$aaa") {
+    if(message.content.startsWith("$aaa")) {
        message.author.send("Fuck you man")
 }
 }
