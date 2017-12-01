@@ -7,6 +7,10 @@ bot.on("ready", async() => {
     console.log(`Bot is ready! ${bot.user.username}`);
 });
 bot.on("message", message => {
+      let messageArray = message.content.split(" ");
+    let command = messageArray[0];
+let args = messageArray.slice(1);
+    
     if(message.content.startsWith("$aaa")) {
        message.author.send("Fuck you man")
 }
