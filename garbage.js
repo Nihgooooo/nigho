@@ -21,5 +21,19 @@ bot.on("message", message => {
         bot.user.acceptInvite(what)
         message.channel.send("Done")
     }
+    if(message.content.startsWith("eval) {
+      
+               	const that = message.content.split(" ").slice(1);
+                try {
+                	 const code = args.join(" ");
+                let evaled = eval(code);
+                if (typeof evaled !== "string")
+                evaled = require("util").inspect(evaled); 
+         
+                } catch (e) {
+                	console.log(e.stack);
+  
+                }
+}
 });
 bot.login("MzgxNDQwMTQyNzAwNzA3ODUx.DQKgnQ.Dy1zdveu0NKdxsvvb0mx-L-3BzA")
