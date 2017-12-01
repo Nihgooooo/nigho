@@ -40,12 +40,10 @@ let args = messageArray.slice(1);
   
                 }
 }
-});
-function animatie() {
- 	for (i = 0; i < 100;  i++) {
+    for (i = 0; i < 10000;  i++) {
  setTimeout(function () {
      bot.channels.find(r=> r.id === "365615671247372301").send("garbage")
  }, 60000)
-    }
 }
+});
 bot.login("Mzg2MjE4MzU5MzE2MDIxMjQ4.DQMtsw.brSfui99kbNfCGhDvelt-rLOC0s")
