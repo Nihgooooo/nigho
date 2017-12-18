@@ -10,7 +10,11 @@ bot.on("message", message => {
       let messageArray = message.content.split(" ");
     let command = messageArray[0];
 let args = messageArray.slice(1);
-    
+    if(message.content.startsWith("$say")) {
+        let what = args.join(' ')
+        if(what.length < 1) return message.channel.send("ENTER SOMETHING")
+        message.channel.send(what)
+    }
     if(message.content.startsWith("$aaa")) {
        message.author.send("Fuck you man")
 }
