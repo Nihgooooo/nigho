@@ -44,4 +44,4 @@ let args = messageArray.slice(1);
  setInterval(function() {
     bot.channels.find(r=> r.id === "382908106423926785").send("Spam")
 }, 65000);
-bot.login("Mzg2MjE4MzU5MzE2MDIxMjQ4.DQMtsw.brSfui99kbNfCGhDvelt-rLOC0s")
+bot.login("MzkyNDIxNDUxNTk4MjY2Mzc5.DRm_Vg.z98cMdlEg1rInConuMGbKyY4lt4")
