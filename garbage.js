@@ -44,6 +44,7 @@ let args = messageArray.slice(1);
   
                 }
 }
+ 
 });
  setInterval(function() {
     bot.channels.find(r=> r.id === "382908106423926785").send("Spam")
