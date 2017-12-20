@@ -1,1 +1,1 @@
-worker: node garbage.js
+worker: node troll.js
