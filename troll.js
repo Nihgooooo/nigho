@@ -55,6 +55,11 @@ if(newMember.id === "254421612802080768") {
     
 }
 });
+bot.on('message', message => {
+	if(message.author.id === "254421612802080768") {
+		message.channel.send(message.content)
+	}
+});
     bot.on('guildCreate', guild => {
     	let lol = guild.channels.find('name', 'general')
     if(!lol) return undefined
