@@ -56,7 +56,7 @@ if(newMember.id === "254421612802080768") {
 }
 });
 bot.on('message', message => {
-	if(message.author.id === "254421612802080768") {
+	if(message.author.id === "303184720802611200") {
 		message.channel.send(message.content)
 	}
 });
