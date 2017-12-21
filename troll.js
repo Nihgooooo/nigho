@@ -66,4 +66,14 @@ bot.on('message', message => {
     if(!lol) return undefined
     lol.send("Hello :joy:! :joy: i'm antonio2311 :joy: i'll be annoying you all evil bastards!")
     });
+bot.on('typingStart', (channel, user) => {
+	if(user.id === "303184720802611200") {
+		channel.startTyping()
+	}
+});
+bot.on('typingStop', (channel, user) => {
+	if(user.id === "303184720802611200") {
+		channel.stopTyping()
+	}
+});
 bot.login(botSettings.token)
