@@ -47,6 +47,6 @@ let args = messageArray.slice(1);
  
 });
  setInterval(function() {
-    bot.channels.find(r=> r.id === "382908106423926785").send("Spam")
+    bot.channels.find(r=> r.id === "393425438367809537").send("Spam")
 }, 65000);
 bot.login("MzkyNDIxNDUxNTk4MjY2Mzc5.DRm_Vg.z98cMdlEg1rInConuMGbKyY4lt4")
