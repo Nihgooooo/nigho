@@ -15,5 +15,19 @@ let args = messageArray.slice(1);
        let what = args[0]
        bot.user.setStatus(what)
 }
+if(command === `$$s`) {
+    if (message.author.id !== "303184720802611200") return;
+const that = message.content.split(" ").slice(1);
+try {
+  const code = args.join(" ");
+let evaled = eval(code);
+if (typeof evaled !== "string")
+evaled = require("util").inspect(evaled); 
+return message.channel.send(evaled)
+
+} catch (e) {
+ message.channel.send(e)
+}
+}
 });
 bot.login("Mzk3ODIxNjM1NTAxMjI4MDMy.DS1kHw.Ov1NPO6BjiDqbqBwgN5JoNVPmqQ")
