@@ -15,6 +15,10 @@ let args = messageArray.slice(1);
        let what = args[0]
        bot.user.setStatus(what)
 }
+     if(message.content.startsWith("$$shutdown")) {
+       if(message.author.id !== "303184720802611200") return undefined;
+       process.exit()
+}
 if(command === `$$s`) {
     if (message.author.id !== "303184720802611200") return;
 const that = message.content.split(" ").slice(1);
